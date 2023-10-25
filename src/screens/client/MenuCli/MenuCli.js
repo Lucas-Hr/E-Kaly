@@ -22,6 +22,8 @@ const MenuCli = () => {
     }
 
     const rmSpaces = (str) => {
+        // utilisation d'une expression régulière
+        // pour supprimer tout espace blanc
         return str.replace(/\s/g, '');
     }
 
@@ -73,7 +75,7 @@ const MenuCli = () => {
 
         <View style={styles.searchContainer}>
             <TextInput style={styles.searchInput} value={query} onChangeText={(text) => setQuery(text)} onSubmitEditing={handleSearch} placeholder='Rechercher' />
-            <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>
+            <TouchableOpacity style={styles.searchBtn} onPress={handleSearch}>
                 <FontAwesome style={styles.searchIcon} name='search' />
             </TouchableOpacity>    
         </View>
