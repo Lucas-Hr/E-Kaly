@@ -7,13 +7,13 @@ import Colors from '../../../assets/colors/Colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MenuList from './MenuList/MenuList';
 import SousMenu from './SousMenu/SousMenu';
-import SECTIONS from './SECTIONS/SECTIONS';
+import ListMenu from './ListMenu/ListMenu';
 
 const MenuCli = () => {
     const navigation = useNavigation();
 
     const [query, setQuery] = useState('');
-    const [filteredMenu, setFilteredMenu] = useState(SECTIONS); // menu par défaut
+    const [filteredMenu, setFilteredMenu] = useState(ListMenu); // menu par défaut
 
     const rmSpecialCharacters = (str) => {
         // utilisation d'une expression régulière 
@@ -25,11 +25,11 @@ const MenuCli = () => {
         // appeler l'API backend avec la requête de recherche (query)
         if (rmSpecialCharacters(query) === ''){
             // si la recherche est vide, revenir au menu par défaut
-            setFilteredMenu(SECTIONS);
+            setFilteredMenu(ListMenu);
         }
         else{
             // effectuer la recherche dans le menu et filtrer les résultats
-            const filtered = SECTIONS.map((category) => ({
+            const filtered = ListMenu.map((category) => ({
                 title: category.title,
                 data: category.data.filter((item) =>
                     item.title.toLowerCase().includes(rmSpecialCharacters(query).toLowerCase()) ||
@@ -76,7 +76,7 @@ const MenuCli = () => {
             </TouchableOpacity>    
         </View>
 
-        <MenuList section = {SECTIONS} />
+        <MenuList section = {ListMenu} />
         {/* mettre à jour filteredMenu avec les résultats de la recherche */}    
         <SousMenu section = {filteredMenu} /> 
         

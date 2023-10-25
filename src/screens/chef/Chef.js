@@ -10,8 +10,8 @@ const Chef = () => {
     return(
         <NavigationContainer>
             <Stack.Navigator screenOptions={{headerShown: false}}>
-                {/* <Stack.Screen name="Commandes" component={CommandChef} /> */}
-                <Stack.Screen name="Serveurs" component={Waiters} />
+                <Stack.Screen name="Commandes" component={CommandChef} />
+                {/* <Stack.Screen name="Serveurs" component={Waiters} /> */}
             </Stack.Navigator>
         </NavigationContainer>
     );

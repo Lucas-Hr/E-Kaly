@@ -6,9 +6,9 @@ import Chef from './chef/Chef';
 const SelectUser = () => {
     return(
         /* Choose between Client screen, Admin screen, Chef screen*/
-        <Client />
+        // <Client />
         // <Admin />
-        // <Chef />
+        <Chef />
     );
 };
 

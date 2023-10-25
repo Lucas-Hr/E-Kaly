@@ -11,6 +11,8 @@ import Table5 from '../../../screens/chef/CommandChef/Tables/Table5';
 import Table7 from '../../../screens/chef/CommandChef/Tables/Table7';
 // components
 import WhiteBackgroundScreen from '../../../components/WhiteBackgroundColor/WhiteBackgroundColor';
+// styles
+import styles from './styles';
 
 const Tab = createMaterialTopTabNavigator();
 

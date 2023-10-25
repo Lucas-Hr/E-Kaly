@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Dimensions, Image, SectionList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Liste from '../Liste/Liste';
+import ListClient from '../ListClient/ListClient';
 
 const totalSum = (props) => {
     let {section} = props;
@@ -30,8 +30,8 @@ const singleSum = (props) => {
 const CommandList = () => {
     const navigation = useNavigation();
 
-    const sumEveryone = totalSum({section : Liste});
-    const sumOne = singleSum({section : Liste});
+    const sumEveryone = totalSum({section : ListClient});
+    const sumOne = singleSum({section : ListClient});
 
     return (
         <View style={styles.container}>
@@ -72,7 +72,7 @@ const CommandList = () => {
 
                 <View style={styles.containerCommand}>
                     <SectionList 
-                        sections={Liste}
+                        sections={ListClient}
                         renderSectionHeader={({section}) => (
                             <Text style={styles.souSection}>{section.title}</Text>
                         )}  
