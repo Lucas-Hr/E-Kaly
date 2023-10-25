@@ -33,11 +33,11 @@ const MenuCli = () => {
                 title: category.title,
                 data: category.data.filter((item) =>
                     item.title.toLowerCase().includes(rmSpecialCharacters(query).toLowerCase()) ||
-                    item.ingred.toLowerCase().includes(rmSpecialCharacters(query).toLowerCase()) ||
-                    item.cost.toString().includes(rmSpecialCharacters(query)) ||
-                    item.cost.toString().concat('k').includes(rmSpecialCharacters(query).toLowerCase()) ||
-                    item.cost.toString().concat('k mga').includes(rmSpecialCharacters(query).toLowerCase()) ||
-                    item.cost.toString().concat('kmga').includes(rmSpecialCharacters(query).toLowerCase()) ||
+                    item.ingredients.toLowerCase().includes(rmSpecialCharacters(query).toLowerCase()) ||
+                    item.price.toString().includes(rmSpecialCharacters(query)) ||
+                    item.price.toString().concat('k').includes(rmSpecialCharacters(query).toLowerCase()) ||
+                    item.price.toString().concat('k mga').includes(rmSpecialCharacters(query).toLowerCase()) ||
+                    item.price.toString().concat('kmga').includes(rmSpecialCharacters(query).toLowerCase()) ||
                     item.star.toString().includes(rmSpecialCharacters(query))
                 ),
             }));
@@ -212,12 +212,12 @@ const styles = StyleSheet.create({
         fontSize: 13,
         fontWeight: 'bold',
     },
-    platIngred: {
+    platIngredients: {
         color: Colors.gray,
         fontSize: 12,
         fontStyle: 'italic',
     },
-    platCost: {
+    platPrice: {
         marginTop: 5,
         color: Colors.black,
         fontSize: 14,

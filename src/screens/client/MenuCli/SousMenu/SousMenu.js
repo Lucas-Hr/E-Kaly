@@ -31,8 +31,8 @@ const SousMenu = (props) => {
                     </View>
                     <View style={styles.platInfo}>
                         <Text style={styles.platTitle}>{item.title}</Text>
-                        <Text style={styles.platIngred}>{item.ingred}</Text>
-                        <Text style={styles.platCost}>{item.cost.toString()}K MGA</Text>
+                        <Text style={styles.platIngredients}>{item.ingredients}</Text>
+                        <Text style={styles.platPrice}>{item.price.toString()}K MGA</Text>
                         <View style={styles.platFoot}>
                         <View style={styles.platStar}>
                             <FontAwesome style={styles.starIcon} name='star' />
@@ -40,7 +40,7 @@ const SousMenu = (props) => {
                         </View>
                         <View style={styles.platControl}>
                             <FontAwesome style={styles.plusminusIcon} name='plus-square' />
-                            <Text style={styles.nbrPlat}>{item.compt.toString()}</Text>
+                            <Text style={styles.nbrPlat}>{item.quantity.toString()}</Text>
                             <FontAwesome style={styles.plusminusIcon} name='minus-square' />
                         </View>
                         </View>  
@@ -82,12 +82,12 @@ const styles = StyleSheet.create({
         fontSize: 13,
         fontWeight: 'bold',
     },
-    platIngred: {
+    platIngredients: {
         color: Colors.gray,
         fontSize: 12,
         fontStyle: 'italic',
     },
-    platCost: {
+    platPrice: {
         marginTop: 5,
         color: Colors.black,
         fontSize: 14,
