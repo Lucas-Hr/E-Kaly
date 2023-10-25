@@ -32,15 +32,15 @@ const SousMenu = (props) => {
                     <View style={styles.platInfo}>
                         <Text style={styles.platTitle}>{item.title}</Text>
                         <Text style={styles.platIngred}>{item.ingred}</Text>
-                        <Text style={styles.platCost}>{item.cost}</Text>
+                        <Text style={styles.platCost}>{item.cost.toString()}K MGA</Text>
                         <View style={styles.platFoot}>
                         <View style={styles.platStar}>
                             <FontAwesome style={styles.starIcon} name='star' />
-                            <Text style={styles.nbrStar}>{item.star}</Text>
+                            <Text style={styles.nbrStar}>{item.star.toString()}</Text>
                         </View>
                         <View style={styles.platControl}>
                             <FontAwesome style={styles.plusminusIcon} name='plus-square' />
-                            <Text style={styles.nbrPlat}>0</Text>
+                            <Text style={styles.nbrPlat}>{item.compt.toString()}</Text>
                             <FontAwesome style={styles.plusminusIcon} name='minus-square' />
                         </View>
                         </View>  

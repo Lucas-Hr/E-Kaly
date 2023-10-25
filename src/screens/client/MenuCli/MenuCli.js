@@ -21,12 +21,6 @@ const MenuCli = () => {
         return str.replace(/^[^a-zA-Z0-9]+|[^a-zA-Z0-9]+$/g, '');
     }
 
-    const rmSpaces = (str) => {
-        // utilisation d'une expression régulière
-        // pour supprimer tout espace blanc
-        return str.replace(/\s/g, '');
-    }
-
     const handleSearch = () => {
         // appeler l'API backend avec la requête de recherche (query)
         if (rmSpecialCharacters(query) === ''){
@@ -40,9 +34,11 @@ const MenuCli = () => {
                 data: category.data.filter((item) =>
                     item.title.toLowerCase().includes(rmSpecialCharacters(query).toLowerCase()) ||
                     item.ingred.toLowerCase().includes(rmSpecialCharacters(query).toLowerCase()) ||
-                    rmSpaces(item.cost.toLowerCase()).includes(rmSpecialCharacters(query).toLowerCase()) ||
-                    item.cost.toLowerCase().includes(rmSpecialCharacters(query).toLowerCase()) ||
-                    item.star.toLowerCase().includes(rmSpecialCharacters(query).toLowerCase())
+                    item.cost.toString().includes(rmSpecialCharacters(query)) ||
+                    item.cost.toString().concat('k').includes(rmSpecialCharacters(query).toLowerCase()) ||
+                    item.cost.toString().concat('k mga').includes(rmSpecialCharacters(query).toLowerCase()) ||
+                    item.cost.toString().concat('kmga').includes(rmSpecialCharacters(query).toLowerCase()) ||
+                    item.star.toString().includes(rmSpecialCharacters(query))
                 ),
             }));
             setFilteredMenu(filtered);
