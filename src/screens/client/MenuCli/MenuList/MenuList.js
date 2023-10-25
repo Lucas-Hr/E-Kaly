@@ -2,7 +2,6 @@ import React from 'react';
 import { useRef, useState} from 'react';
 import { Animated, Dimensions, FlatList, StyleSheet, Text, View } from 'react-native';
 import Colors from '../../../../assets/colors/Colors';
-import SECTIONS from '../SECTIONS/SECTIONS';
 
 const Indicator = ({indicatorRef}) => {
     return (
@@ -15,7 +14,9 @@ const Indicator = ({indicatorRef}) => {
     );
 }
 
-const MenuList = () => {
+const MenuList = (props) => {
+    const {section} = props;
+
     const [indicatorPosition, setIndicatorPosition] = useState(0);
     const indicatorRef = useRef(new Animated.Value(0)).current;
 
@@ -23,7 +24,7 @@ const MenuList = () => {
         const scrollOffset = event.nativeEvent.contentOffset.x;
         const itemWidth = Dimensions.get('window').width - 40 * 2;
         const indicatorWidth = 40;
-        const maxIndicatorPosition = (SECTIONS.length - 1) * itemWidth;
+        const maxIndicatorPosition = (section.length - 1) * itemWidth;
 
         const newPosition = Math.min(maxIndicatorPosition, scrollOffset / itemWidth);
         setIndicatorPosition(newPosition);
@@ -38,7 +39,7 @@ const MenuList = () => {
         <View style={styles.menuBar}>     
             <FlatList
                 horizontal
-                data={SECTIONS}
+                data={section}
                 contentContainerStyle={{columnGap: 14}}
                 onScroll={handleScroll}
                 scrollEventThrottle={16}

@@ -2,14 +2,15 @@ import React from 'react';
 import { Animated, Dimensions, FlatList, Image, SafeAreaView, StyleSheet, Text, View} from "react-native";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Colors from '../../../../assets/colors/Colors';
-import SECTIONS from '../SECTIONS/SECTIONS';
 
-const SousMenu = () => {
+const SousMenu = (props) => {
+    const {section} = props;
+
     return(
         <SafeAreaView style={styles.containerList}>      
         <Animated.FlatList
             horizontal
-            data={SECTIONS}
+            data={section}
             keyExtractor={(item) => item.title}
             showsHorizontalScrollIndicator={false}
             pagingEnabled

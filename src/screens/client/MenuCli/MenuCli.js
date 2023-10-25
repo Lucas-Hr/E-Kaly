@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import {useRef, useState} from 'react';
 import { Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -7,9 +7,62 @@ import Colors from '../../../assets/colors/Colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MenuList from './MenuList/MenuList';
 import SousMenu from './SousMenu/SousMenu';
+import SECTIONS from './SECTIONS/SECTIONS';
 
 const MenuCli = () => {
     const navigation = useNavigation();
+
+    const [query, setQuery] = useState('');
+    const [filteredMenu, setFilteredMenu] = useState(SECTIONS); // menu par défaut
+
+    const handleSearch = () => {
+        // appeler l'API backend avec la requête de recherche (query)
+        // mettre à jour searchResults avec les résultats de la recherche
+        // const express = require('express');
+        // const app = express();
+
+        if (query.trim() === ''){
+            // si la recherche est vide, revenir au menu par défaut
+            setFilteredMenu(SECTIONS);
+        }
+        else{
+            // effectuer la recherche dans le menu et filtrer les résultats
+            const filtered = SECTIONS.map((category) => ({
+                title: category.title,
+                data: category.data.filter((item) =>
+                    item.title.toLowerCase().includes(query.toLowerCase()) ||
+                    item.ingred.toLowerCase().includes(query.toLowerCase()) ||
+                    item.cost.toLowerCase().includes(query.toLowerCase()) ||
+                    item.star.toLowerCase().includes(query.toLowerCase())
+                ),
+            }));
+            setFilteredMenu(filtered);
+        }
+
+        /*
+        app.get('/search', (req, res) => {
+            const {query} = req.query;
+
+            // parcourir le menu et filtrer les éléments qui correspondent à la requête
+            const results = SECTIONS.map((category) => ({
+                title: category.title,
+                data: category.data.filter((item) =>
+                    item.title.toLowerCase().includes(query.toLowerCase()) ||
+                    item.ingred.toLowerCase().includes(query.toLowerCase()) ||
+                    item.cost.toLowerCase().includes(query.toLowerCase()) ||
+                    item.star.toLowerCase().includes(query.toLowerCase())
+                ),
+            }));
+
+            res.json(results);
+        });
+
+        app.listen(3000, () => {
+            console.log('Server is running on port 3000');
+        });
+        */
+    };
+
     return (
     <View style={styles.container}>
 
@@ -35,14 +88,14 @@ const MenuCli = () => {
         </View>
 
         <View style={styles.searchContainer}>
-            <TextInput style={styles.searchInput} value="" onChange={() => {}} placeholder='Rechercher' />
+            <TextInput style={styles.searchInput} value={query} onChangeText={(text) => setQuery(text)} onSubmitEditing={handleSearch} placeholder='Rechercher' />
             <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>
                 <FontAwesome style={styles.searchIcon} name='search' />
             </TouchableOpacity>    
         </View>
 
-        <MenuList />    
-        <SousMenu />
+        <MenuList section = {SECTIONS} />    
+        <SousMenu section = {filteredMenu} />
 
         <View style={styles.footer}>
             <TouchableOpacity style={styles.listBtn} onPress={() => navigation.navigate('Commandes')}>
