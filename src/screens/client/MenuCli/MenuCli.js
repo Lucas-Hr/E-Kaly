@@ -15,13 +15,19 @@ const MenuCli = () => {
     const [query, setQuery] = useState('');
     const [filteredMenu, setFilteredMenu] = useState(SECTIONS); // menu par défaut
 
+    const rmSpecialCharacters = (str) => {
+        // utilisation d'une expression régulière 
+        // pour supprimer les caractères spéciaux au début et à la fin
+        return str.replace(/^[^a-zA-Z0-9]+|[^a-zA-Z0-9]+$/g, '');
+    }
+
+    const rmSpaces = (str) => {
+        return str.replace(/\s/g, '');
+    }
+
     const handleSearch = () => {
         // appeler l'API backend avec la requête de recherche (query)
-        // mettre à jour searchResults avec les résultats de la recherche
-        // const express = require('express');
-        // const app = express();
-
-        if (query.trim() === ''){
+        if (rmSpecialCharacters(query) === ''){
             // si la recherche est vide, revenir au menu par défaut
             setFilteredMenu(SECTIONS);
         }
@@ -30,37 +36,15 @@ const MenuCli = () => {
             const filtered = SECTIONS.map((category) => ({
                 title: category.title,
                 data: category.data.filter((item) =>
-                    item.title.toLowerCase().includes(query.toLowerCase()) ||
-                    item.ingred.toLowerCase().includes(query.toLowerCase()) ||
-                    item.cost.toLowerCase().includes(query.toLowerCase()) ||
-                    item.star.toLowerCase().includes(query.toLowerCase())
+                    item.title.toLowerCase().includes(rmSpecialCharacters(query).toLowerCase()) ||
+                    item.ingred.toLowerCase().includes(rmSpecialCharacters(query).toLowerCase()) ||
+                    rmSpaces(item.cost.toLowerCase()).includes(rmSpecialCharacters(query).toLowerCase()) ||
+                    item.cost.toLowerCase().includes(rmSpecialCharacters(query).toLowerCase()) ||
+                    item.star.toLowerCase().includes(rmSpecialCharacters(query).toLowerCase())
                 ),
             }));
             setFilteredMenu(filtered);
         }
-
-        /*
-        app.get('/search', (req, res) => {
-            const {query} = req.query;
-
-            // parcourir le menu et filtrer les éléments qui correspondent à la requête
-            const results = SECTIONS.map((category) => ({
-                title: category.title,
-                data: category.data.filter((item) =>
-                    item.title.toLowerCase().includes(query.toLowerCase()) ||
-                    item.ingred.toLowerCase().includes(query.toLowerCase()) ||
-                    item.cost.toLowerCase().includes(query.toLowerCase()) ||
-                    item.star.toLowerCase().includes(query.toLowerCase())
-                ),
-            }));
-
-            res.json(results);
-        });
-
-        app.listen(3000, () => {
-            console.log('Server is running on port 3000');
-        });
-        */
     };
 
     return (
@@ -94,9 +78,10 @@ const MenuCli = () => {
             </TouchableOpacity>    
         </View>
 
-        <MenuList section = {SECTIONS} />    
-        <SousMenu section = {filteredMenu} />
-
+        <MenuList section = {SECTIONS} />
+        {/* mettre à jour filteredMenu avec les résultats de la recherche */}    
+        <SousMenu section = {filteredMenu} /> 
+        
         <View style={styles.footer}>
             <TouchableOpacity style={styles.listBtn} onPress={() => navigation.navigate('Commandes')}>
                 <FontAwesome style={styles.listIcon} name='chevron-up' size={15}/>
