@@ -1,9 +1,10 @@
+import { Dimensions } from "react-native";
+
 export default {
     /*--------VerticalTabView----------*/
     container: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent : 'center',     
     },
 
     tabList : {
@@ -12,7 +13,7 @@ export default {
 
     tabBar: {
         backgroundColor : '#A40E2A',
-        maxWidth : 120,
+        width : 120,
     },
 
     /*--------TabBarButton----------*/
@@ -34,4 +35,48 @@ export default {
         color: 'white',
         textAlign : 'center',
     },
+
+    /*-----------List-----------*/
+    containerList : {
+        flexDirection : 'row',
+        justifyContent : 'space-between',
+        marginVertical : 5,
+        marginHorizontal : 30
+    },
+
+    itemList : {
+        flexDirection : 'row',
+    },
+
+    platList : {
+        marginHorizontal :10,
+    },
+
+    /*---------Style title Commandes-------- */
+    CommandeBar : {
+        width: Dimensions.get('window').width - 120,
+    },
+
+    CommandeView : {
+        flexDirection : 'row',
+        justifyContent : 'center',
+        alignItems : 'center',
+        borderBottomColor : "#D9D9D9",
+        borderBottomWidth : 0.5,
+        borderStyle : "solid",
+        backgroundColor : '#fff',
+        paddingTop : 10,
+        paddingBottom : 10,
+    },
+
+    CommandeIcon : {
+        marginHorizontal : 10,
+    },
+
+    CommandeTitle : {
+        fontWeight : 'bold',
+        fontSize : 16,
+        color : '#000',
+    },
+
 };
