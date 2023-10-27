@@ -7,10 +7,10 @@ import App from '../routes/communication/App';
 const SelectUser = () => {
     return(
         /* Choose between Client screen, Admin screen, Chef screen*/
-        // <Client />
+        <Client />
         // <Admin />
         // <Chef />
-        <App />
+        // <App />
     );
 };
 
